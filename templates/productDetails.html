@@ -1,0 +1,61 @@
+{% extends "header.html" %}
+
+    <!-- Other head elements -->
+
+
+{% block content %}
+
+
+<section class="pd-product-details-section py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Product Image -->
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="text-center">
+                    <img src="{{ product.image_url }}" alt="{{ product.Brand_name }} Image" class="img-fluid rounded">
+                </div>
+            </div>
+            
+            <!-- Product Info -->
+            <div class="col-lg-6">
+                <h1 class="display-4 mb-3">{{ product.Brand_name }}</h1>
+                <p class="text-muted">Category: {{ product.Brand_category }}</p>
+
+                <!-- Pricing -->
+                <div class="d-flex align-items-center mb-3">
+                    <span class="current-price display-4 text-success">${{ product.price }}</span>
+                    <span class="original-price text-muted ml-3"><del>$1200.00</del></span>
+                    <span class="badge badge-success ml-3">Save $300</span>
+                </div>
+
+                <!-- Product Description -->
+                <p class="mb-4">
+                   {{ product.description }}
+                </p>
+
+                <!-- Add to Cart -->
+                <div class="mb-4">
+                <form method="POST" action={{ url_for('place_order', product_id=product.id) }} >
+                    {{ form.hidden_tag() }}
+                    {{ form.submit(class="btn btn-primary btn-lg mr-2") }}
+                </form>
+                </div>
+
+                <!-- Product Specifications -->
+                <h5 class="mt-4">Specifications</h5>
+                <ul class="list-unstyled">
+                    <li><strong>Manufacture Date:</strong>{{ product.M_date}}</li>
+                    <li><strong>Range:</strong> 50-70 miles per charge</li>
+                    <li><strong>Frame:</strong> Lightweight aluminum alloy frame</li>
+                    <li><strong>Weight:</strong> 25kg</li>
+                    <li><strong>Max Speed:</strong> 25 mph</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+ <!-- Bootstrap JS (optional) -->
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}

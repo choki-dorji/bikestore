@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bicycle Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/logo.css">
+    <link rel="stylesheet" href="/static/css/checkout.css">
+
+    <style>
+        .nav-link {
+            padding: 10px;
+            color: white;
+        }
+        
+        /* Default background color for non-active links */
+        .nav-link:not(.active) {
+            background-color: #6c757d; /* Default grey */
+        }
+        
+        /* Active link with custom background colors */
+        .nav-link.active {
+            background-color: #007bff; /* Blue for active links */
+        }
+        
+        /* Custom background for specific active categories */
+        .nav-link.active[href*="Mountain Bike"] {
+            background-color: #28a745; /* Green for Mountain Bike */
+        }
+    
+        .nav-link.active[href*="Touring Bike"] {
+            background-color: #ffc107; /* Yellow for Touring Bike */
+        }
+    
+        .nav-link.active[href*="E bikes"] {
+            background-color: #17a2b8; /* Cyan for E-bikes */
+        }
+    
+        .nav-link.active[href*="Folding Bike"] {
+            background-color: #f44336; /* Red for Folding Bike */
+        }
+    
+        .nav-link.active[href*="Fixed Gear"] {
+            background-color: #9c27b0; /* Purple for Fixed Gear */
+        }
+    
+        .nav-link.active[href*="Gravel Bike"] {
+            background-color: #ff5722; /* Orange for Gravel Bike */
+        }
+    
+        .nav-link.active[href*="All Bikes"] {
+            background-color: #655e82; /* Dark grey for All Bikes */
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-container">
+            <a href="/"  class="logo-container-link">
+            <div class="logo">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/bicycle.png" alt="Bicycle Icon" class="logo-icon">
+                    <h1>
+                        <span class="logo-text-1">Bicycle</span> 
+                        <span class="logo-text-2">Store</span>
+                    </h1>
+                </div>
+            </a>
+            <div class="search-bar">
+                <form method="GET" action="{{ url_for('Productspage') }}">
+                    <input type="text" name="search" placeholder="Search for bicycles">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            
+            
+            
+            <div class="header-links">
+                <a href="/products">Products</a>
+                <a href="/orders"><i class="fa fa-shopping-cart"></i> Cart</a>
+                <a href="/">Contact us</a>
+                    <a href="{{ url_for('addProduct') }}">Add Product</a>
+            </div>
+            <button class="menu-btn">
+                MENU
+            </button>
+        </div>
+    </header>
+
+    
+    {% block content %}{% endblock %}
+    
+   
+    <!-- Bootstrap 4.6.2 JS with jQuery and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

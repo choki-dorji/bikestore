@@ -1,0 +1,62 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Checkout</h1>
+
+    <!-- Display the order summary -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Order Summary</h3>
+            <ul class="list-group mb-4">
+                {% for order in orders %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ order.product.Brand_name }} - ${{ order.product.price }} x {{ order.quantity }}
+                    <span class="badge bg-primary rounded-pill">${{ order.product.price * order.quantity }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <!-- Display the total price -->
+            <div class="text-end">
+                <h4>Total: ${{ total_price }}</h4>
+            </div>
+            <div class="checkout-grid">
+                <div class="payment-method">
+                  <h3>Choose your payment method</h3>
+                
+                  <form class="payment-form">
+                    <div class="form-grid">
+                      <div>
+                        <input type="text" placeholder="Name of card holder" class="form-input" />
+                      </div>
+                      <div>
+                        <input type="number" placeholder="EM" class="form-input" />
+                      </div>
+                      <div>
+                        <input type="number" placeholder="Postal code" class="form-input" />
+                      </div>
+                      <div>
+                        <input type="number" placeholder="Card number" class="form-input" />
+                      </div>
+                      <div>
+                        <input type="number" placeholder="CVV" class="form-input" />
+                      </div>
+                      <div>
+                        <input type="text" placeholder="address" class="form-input" />
+                      </div>
+                    </div>
+          
+                    <div class="form-actions">
+                        <form method="POST" action="/process_payment">
+                      <button type="button" class="btn-primary">Pay</button>
+                    </form>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+          
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,138 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the icon and text */
+  }
+
+  .header-container .logo-container-link{
+    text-decoration: none;
+  }
+  
+  /* Bicycle Icon Styling */
+  .logo-icon {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    color: #007bff; /* You can adjust the color */
+  }
+  
+  /* Logo Text Styling */
+  .logo h1 {
+    font-size: 2.5rem; /* Larger text for the logo */
+    font-weight: 700; /* Make the text bold */
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-text-1 {
+    color: #007bff; /* Primary brand color for 'Bicycle' */
+    font-weight: 700; /* Make 'Bicycle' bold */
+  }
+  
+  .logo-text-2 {
+    color: #333; /* Darker color for 'Store' */
+    font-weight: 400; /* Slightly lighter weight for 'Store' */
+    margin-left: 5px;
+  }
+  
+  /* Optional: Add subtle text-shadow to enhance logo look */
+  .logo h1 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .header-container .menu-btn{
+
+    display: none;
+  }
+  
+  
+/* search */
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  outline: #008ECC;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px;
+  
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+}
+
+
+.header-container {
+  position: relative; /* Important for positioning the dropdown links */
+}
+
+
+  /* responsive code */
+/* /for tablet size */
+@media (max-width: 991px) {
+  /* Hide Bicycle Store text on tablet-sized screens */
+  .logo h1 {
+      display: none;
+  }
+}
+
+/* Responsive Logo for Mobile View */
+@media (max-width: 768px) {
+  .logo {
+    justify-content: center;
+  }
+
+  /* Reduce logo icon size on mobile */
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Hide text below a certain screen size */
+  .logo h1 {
+    display: none;
+  }
+  
+  .search-bar button{
+    display: none;
+  }
+  .search-bar input{
+    width: 240px;
+    border-radius: 10px;
+  }
+  .header-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Adjust according to your header height */
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index:1;
+  }
+  .header-container .menu-btn {
+    display: flex;
+    padding: 9px;
+    border-radius: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* CSS to toggle the dropdown with hover effect */
+.menu-btn:hover .header-links {
+    display: block;
+  }
+}

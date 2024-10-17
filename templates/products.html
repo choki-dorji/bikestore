@@ -1,0 +1,89 @@
+{% extends "header.html" %} 
+{% block content %}
+<nav class="group">
+    <ul class="group-list">
+        <li class="nav-item">
+            <a href="{{ url_for('Productspage', category='Mountain Bike') }}" 
+               class="nav-link {% if request.args.get('category') == 'Mountain Bike' %} active {% endif %}">
+               Mountain Bike
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url_for('Productspage', category='Touring Bike') }}" 
+               class="nav-link {% if request.args.get('category') == 'Touring Bike' %} active {% endif %}">
+               Touring Bike
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url_for('Productspage', category='E bikes') }}" 
+               class="nav-link {% if request.args.get('category') == 'E bikes' %} active {% endif %}">
+               E-bikes
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url_for('Productspage', category='Folding Bike') }}" 
+               class="nav-link {% if request.args.get('category') == 'Folding Bike' %} active {% endif %}">
+               Folding Bike
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url_for('Productspage', category='Fixed Gear') }}" 
+               class="nav-link {% if request.args.get('category') == 'Fixed Gear' %} active {% endif %}">
+               Fixed Gear
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url_for('Productspage', category='Gravel Bike') }}" 
+               class="nav-link {% if request.args.get('category') == 'Gravel Bike' %} active {% endif %}">
+               Gravel Bike
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ url_for('Productspage') }}" 
+               class="nav-link {% if not request.args.get('category') %} active {% endif %}">
+               All Bikes
+            </a>
+        </li>
+    </ul>
+</nav>
+
+ 
+
+<section class="product-container">
+    <div class="product-title">
+        {% if query %}
+            <h3>Search results for "{{ query }}"</h3>
+        {% elif category %}
+            <h3>{{ category }}</h3>
+        {% else %}
+            <h3>All Bikes</h3>
+        {% endif %}
+    </div>
+
+    <div class="products-card-container">
+        {% if products %}
+            {% for i in products %}
+                <div class="product-card">
+                    <a href="/place_order/{{ i.id }}" class="product-link">
+                        <img src="{{ i.image_url }}" alt="{{ i.Brand_name }}" class="product-image">
+                        <div class="product-details">
+                            <h2>{{ i.Brand_name }}</h2>
+                            <p>{{ i.description }}</p>
+                            <div class="price-info">
+                                <p class="current-price">${{ i.price }}</p>
+                            </div>
+                        </div>
+                    </a>
+                    <form method="POST" action= {{ url_for('place_order', product_id=i.id) }} >
+                        <button type="submit" class="add-to-cart-btn mb-3">Add to cart</button>
+                    </form>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div>
+                <h1>No products found</h1>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "header.html" %} 
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        {% set latest_message = messages[-1] %}
+        <div class="alert alert-{{ latest_message[0] }} alert-dismissible fade show" role="alert">
+            {{ latest_message[1] }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+{% endwith %}
+
+<!-- Hero Banner -->
+    <section class="hero">
+        <div class="hero-content">
+          <h1>Experience the thrill of cycling</h1>
+          <p>Explore premium bicycles designed for adventure and performance.</p>
+          <a href="./product.html" class="add-to-cart-btn">Explore Our Bikes</a>
+        </div>
+      </section>
+    
+     <section class="product-container">
+        <div class="product-title">
+            <h3>Grab your best deal on bicycles</h3>
+          </div>
+          <!-- products -->
+           <div class="products-card-container">
+            <!-- for loop for the products -->
+                {% for i in products %}
+               <div class="product-card">
+                   <a href="/place_order/{{ i.id }}" class="product-link">
+                  <!-- Discount Label -->
+                  <div class="discount-label">56% OFF</div>
+                  
+                  <!-- Product Image -->
+                  <img src= {{ i.image_url }}  alt="Fixed Bike" class="product-image">
+
+          
+                  <!-- Product Details -->
+                  <div class="product-details">
+                      <h2>Mountain Bike</h2>
+                      <p>Best for hiking in rough terrains</p>
+          
+                      <!-- Price Details -->
+                      <div class="price-info">
+                          <p class="current-price">${{i.price}}</p>
+                          <p class="original-price">$1200</p>
+                          <p class="save-price">Save - $300</p>
+                      </div>
+          
+          
+                      <!-- Add to Cart Button -->
+                      <button class="add-to-cart-btn">Add to cart</button>
+                  </div>
+                  </a>
+              </div>
+              {% endfor %}
+        </div>
+    </section>
+{% endblock %}
