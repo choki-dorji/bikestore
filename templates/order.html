@@ -2,6 +2,7 @@
 {% block content %}
 <div class="container mt-5">
     <h1 class="text-center mb-4">All Orders</h1>
+    
     {% if order_details %}
     <!-- Form for handling increase, decrease, and delete actions -->
     <form method="POST" action="{{ url_for('update_cart') }}">
@@ -10,27 +11,34 @@
                 <div class="list-group">
                     
                     {% for order in order_details %}
-                    <div class="list-group-item mb-3 shadow-sm d-flex align-items-center">
-                        <img src="{{ order.product_image }}" alt="Product Image" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
-                        <div class="flex-grow-1 ms-3">
+                    <div class="list-group-item mb-3 shadow-sm d-flex align-items-center flex-lg-row flex-column">
+                        <!-- Product Image -->
+                        <div class="order-image mb-3 mb-lg-0 text-center">
+                            <img src="{{ order.product_image }}" alt="Product Image" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
+                        </div>
+                        
+                        <!-- Product Details -->
+                        <div class="flex-grow-1 text-center text-lg-left mb-3 mb-lg-0">
                             <h5>{{ order.product_name }}</h5>
                             <p>Price: ${{ order.product_price }}</p>
                         </div>
 
-                        <!-- Quantity control buttons -->
-                        <div class="input-group quantity-group me-3" style="width: 150px;">
-                            <!-- Decrease button -->
-                            <button class="btn btn-outline-secondary" type="submit" name="action" value="decrease">-</button>
+                        <!-- Quantity Control and Delete Button -->
+                        <div class="d-flex justify-content-between align-items-center flex-lg-row flex-column">
+                            <div class="input-group quantity-group mb-3 mb-lg-0" style="width: 150px;">
+                                <!-- Decrease button -->
+                                <button class="btn btn-outline-secondary" type="submit" name="action" value="decrease">-</button>
 
-                            <!-- Quantity display -->
-                            <input type="text" class="form-control text-center" name="quantity_{{ order.order_id }}" value="{{ order.quantity }}" readonly>
+                                <!-- Quantity display -->
+                                <input type="text" class="form-control text-center" name="quantity_{{ order.order_id }}" value="{{ order.quantity }}" readonly>
 
-                            <!-- Increase button -->
-                            <button class="btn btn-outline-secondary" type="submit" name="action" value="increase">+</button>
+                                <!-- Increase button -->
+                                <button class="btn btn-outline-secondary" type="submit" name="action" value="increase">+</button>
+                            </div>
+
+                            <!-- Delete button -->
+                            <button class="btn btn-danger" type="submit" name="action" value="delete">Delete</button>
                         </div>
-
-                        <!-- Delete button -->
-                        <button class="btn btn-danger ms-3" type="submit" name="action" value="delete">Delete</button>
 
                         <!-- Hidden field to pass the order ID -->
                         <input type="hidden" name="order_id" value="{{ order.order_id }}">

@@ -1,0 +1,74 @@
+{% extends "header.html" %} 
+{% block content %}
+
+    <!-- contact use tables  -->
+        <div class="table-container">
+            <h1>Contact Us</h1>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Department</th>
+                  <th>Phone Number</th>
+                  <th>email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <div class="department">Inventory</div>
+                    </td>
+                  <td>178892783</td>
+                  <td>ceedee9@gmail.com</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>
+                    <div class="department">Sales</div>
+                </td>
+                  <td>1763543563</td>
+                  <td>dorji@gmail.com</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>
+                    <div class="department">Custumer service</div>
+                    </td>
+                  <td>178838373</td>
+                  <td><div>sdorji@gmail.com</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>
+                    <div class="department">Sales</div>
+                    </td>
+                  <td>17883663</td>
+                  <td>jlhamo@gmail.com</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>
+                    <div class="department">Sales</div>
+                    </td>
+                  <td>17635353</td>
+                  <td>jigmerr@gmail.com</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    
+      <div class="contact-container">
+        <!-- form for user to contact via the system -->
+        <h1>Or contact us with this form</h1>
+        <form>
+          <input type="text" placeholder="Name" class="input-field" />
+          <input type="email" placeholder="Email" class="input-field" />
+          <input type="text" placeholder="Subject" class="input-field" />
+          <textarea placeholder="Message" rows="6" class="input-field textarea-field"></textarea>
+          <button type="button" class="submit-btn">Send</button>
+        </form>
+      </div>
+    </section>
+
+    {% endblock %}

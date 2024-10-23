@@ -4,7 +4,17 @@
 
 
 {% block content %}
-
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        {% set latest_message = messages[-1] %}
+        <div class="alert alert-{{ latest_message[0] }} alert-dismissible fade show" role="alert">
+            {{ latest_message[1] }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+{% endwith %}
 
 <section class="pd-product-details-section py-5">
     <div class="container">
@@ -24,8 +34,8 @@
                 <!-- Pricing -->
                 <div class="d-flex align-items-center mb-3">
                     <span class="current-price display-4 text-success">${{ product.price }}</span>
-                    <span class="original-price text-muted ml-3"><del>$1200.00</del></span>
-                    <span class="badge badge-success ml-3">Save $300</span>
+                    <!-- <span class="original-price text-muted ml-3"><del>$1200.00</del></span> -->
+                    <!-- <span class="badge badge-success ml-3 display-4">$ {{product.price}}</span> -->
                 </div>
 
                 <!-- Product Description -->
@@ -42,14 +52,20 @@
                 </div>
 
                 <!-- Product Specifications -->
-                <h5 class="mt-4">Specifications</h5>
-                <ul class="list-unstyled">
-                    <li><strong>Manufacture Date:</strong>{{ product.M_date}}</li>
-                    <li><strong>Range:</strong> 50-70 miles per charge</li>
-                    <li><strong>Frame:</strong> Lightweight aluminum alloy frame</li>
-                    <li><strong>Weight:</strong> 25kg</li>
-                    <li><strong>Max Speed:</strong> 25 mph</li>
-                </ul>
+                <h3 class="mt-4">Accessories</h3>
+                {% if accessories %}
+                    <ul class="list-unstyled">
+                        {% for accessory in accessories %}
+                            <li><strong>Frame:</strong> {{ accessory.frame }}</li>
+                            <li><strong>Tires:</strong> {{ accessory.tires }}</li>
+                            <li><strong>Brakes:</strong> {{ accessory.brakes }}</li>
+                            <li><strong>Weight:</strong> {{ accessory.weight }} kg</li>
+                            <hr>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No accessories available for this product.</p>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -1,5 +1,17 @@
 {% extends "header.html" %} 
 {% block content %}
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        {% set latest_message = messages[-1] %}
+        <div class="alert alert-{{ latest_message[0] }} alert-dismissible fade show" role="alert">
+            {{ latest_message[1] }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+{% endwith %}
+
 <nav class="group">
     <ul class="group-list">
         <li class="nav-item">
@@ -15,7 +27,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ url_for('Productspage', category='E bikes') }}" 
+            <a href="{{ url_for('Productspage', category='E-Bikes') }}" 
                class="nav-link {% if request.args.get('category') == 'E bikes' %} active {% endif %}">
                E-bikes
             </a>
@@ -68,6 +80,7 @@
                         <img src="{{ i.image_url }}" alt="{{ i.Brand_name }}" class="product-image">
                         <div class="product-details">
                             <h2>{{ i.Brand_name }}</h2>
+                            <p>{{ i.Brand_category }}</p>
                             <p>{{ i.description }}</p>
                             <div class="price-info">
                                 <p class="current-price">${{ i.price }}</p>

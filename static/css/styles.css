@@ -46,6 +46,7 @@ body {
     padding: 10px 20px;
     display: flex;
     justify-content: center;
+    /* justify-content: flex-start; */
     /* border-top: 1px solid #eee; */
     margin-bottom: 10px;
     overflow-x: auto;
@@ -54,6 +55,12 @@ body {
     margin-right: 20px;
     padding: 30px;
 
+}
+
+@media (max-width: 768px) {
+  .group {
+      justify-content: flex-start;
+  }
 }
 
 .group-list {
